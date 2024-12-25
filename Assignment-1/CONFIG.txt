@@ -1,0 +1,98 @@
+sudo apt update
+sudo apt upgrade -y
+sudo apt install dos2unix -y
+sudo apt install build-essential -y
+ sudo apt-get install s3cmd -y
+sudo apt install libglib2.0-dev liblzo2-dev zlib1g-dev libgnutls28-dev libpcap-dev python3.8-dev
+sudo apt install libmaxminddb-dev libssl-dev
+sudo apt install libpcre3 libpcre3-dev
+sudo apt install unzip
+sudo apt install libssl-dev
+sudo apt install build-essential autoconf automake
+sudo apt install build-essential autoconf automake libtool libpcre3-dev libssl-dev
+sudo apt install gcc-11 g++-11
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+aws --version
+
+
+wget https://tools.netsa.cert.org/releases/yaf-2.16.1.tar.gz
+wget https://tools.netsa.cert.org/releases/silk-3.23.1.tar.gz
+wget https://tools.netsa.cert.org/releases/libfixbuf-2.5.0.tar.gz
+wget https://tools.netsa.cert.org/releases/analysis-pipeline-5.11.4.tar.gz
+wget https://tools.netsa.cert.org/releases/netsa-python-1.5.tar.gz
+wget https://tools.netsa.cert.org/releases/rayon-1.4.3.tar.gz
+wget https://tools.netsa.cert.org/releases/libschemaTools-1.4.tar.gz
+
+tar -xvf libfixbuf-2.5.0.tar.gz
+cd libfixbuf-2.5.0
+ ./configure && make
+sudo make install
+cd ..
+cd yaf	
+./configure && make
+make install
+cd ..
+sudo mkdir /data
+
+tar -xvf silk-3.23.1.tar.gz
+cd silk-3.23.1
+./configure --enable-tools --prefix=/usr/local --with-libfixbuf=/usr/local/lib/pkgconfig/ --with-python --enable-ipv6
+ubuntu@ip-172-31-81-114:~/silk-3.21.0$ ./configure --enable-tools \
+> --prefix=/usr/local \
+> --with-libfixbuf =/usr/local/lib/p
+> --with-libfixbuf=/usr/local/lib/pkgconfig \
+> --with-python \
+> --enable-ipv6
+make
+sudo make install
+
+cat <<EOF >>silk.conf
+> /usr/local/lib
+> /usr/local/lib/silk
+> EOF
+root@ip-172-31-82-178:/home/ubuntu/silk-3.23.1# mv silk.conf ld.so.conf.do
+root@ip-172-31-82-178:/home/ubuntu/silk-3.23.1#
+root@ip-172-31-82-178:/home/ubuntu/silk-3.23.1# sudo ldconfig
+ cd ..
+tar -zxvf libschemaTools-1.4.tar.gz
+cd libschemaTools-1.4
+./configure
+make
+make install
+cd ..
+ tar -zxvf analysis-pipeline-5.11.4.tar.gz
+root@ip-172-31-82-178:/home/ubuntu# cd analysis-pipeline-5.11.4
+root@ip-172-31-82-178:/home/ubuntu/analysis-pipeline-5.11.4# ./configure
+make
+root@ip-172-31-82-178:/home/ubuntu/analysis-pipeline-5.11.4# sudo make install
+69  make clean
+   70  ./configure
+   71  make V=1
+   72  sudo make install
+   73  analysis-pipeline --version
+   74  sudo apt install apt-file
+   75  apt-file update
+   76  make clean
+   77  ./configure
+   78  make
+   79  make install
+   80  make clean
+   81  history
+
+ export SILK_CONFIG_FILE=~/silk-3.23.1/site/generic/silk.conf
+rwfilter --print-statistics --type=in,out --pass=/dev/nul
+
+history
+
+Example site configuration files have been installed in
+    /usr/local/share/silk/*-silk.conf
+Choose the file that matches your packing logic plug-in
+and/or installation, rename it to silk.conf, customize it,
+and copy it to the root of the data directory:
+    /var/silk/silk.conf
+************************************************************
+make[3]: Leaving directory '/home/ubuntu/abc/silk-3.23.1'
+make[2]: Leaving directory '/home/ubuntu/abc/silk-3.23.1'
+make[1]: Leaving directory '/home/ubuntu/abc/silk-3.23.1'
